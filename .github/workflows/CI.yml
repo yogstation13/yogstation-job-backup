@@ -14,6 +14,7 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@2.12
       with:
         name: yogstation13/yogstation-job-backup/yogstation-job-backup
+        username: ${{secrets.DOCKER_PUSH_USERNAME}}
         password: ${{secrets.DOCKER_PUSH_TOKEN}}
         registry: docker.pkg.github.com
         tags: ${{github.sha}}
