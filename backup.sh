@@ -1,5 +1,9 @@
 #!/bin/sh
 
+
+#TODO: Be bothered to actually fix this.
+exit 0
+
 : ${DATABASE_HOST:?"Need to set DATABASE_HOST"}
 : ${DATABASE_PORT:?"Need to set DATABASE_PORT"}
 : ${DATABASE_USERNAME:?"Need to set DATABASE_USERNAME"}
