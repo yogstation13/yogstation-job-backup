@@ -10,7 +10,7 @@
 : ${BACKUP_RETENTION:=7}
 : ${DEMO_RETENTION:=180}
 
-mkdir -p $BACKUP_FOLDER/data
+mkdir -p $BACKUP_FOLDER/logs
 mkdir -p $BACKUP_FOLDER/backups
 
 TODAY=$(date +"%Y-%m-%d")
