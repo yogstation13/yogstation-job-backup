@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-RUN apk add zip curl mariadb-client
+RUN apk add zip curl mariadb-client rsync
 
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.19.2/bin/linux/amd64/kubectl" && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 
