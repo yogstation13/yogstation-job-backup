@@ -18,7 +18,7 @@ echo "Running Backup for $TODAY"
 
 echo "Copying logs older than a day to backup (Skipping Existing files)"
 cd $LOGS_FOLDER
-find . -mtime +1 -exec rsync --ignore-existing -R '{}' $BACKUP_FOLDER/logs \;
+find . -mtime +1 -exec rsync --ignore-existing -Rq '{}' $BACKUP_FOLDER/logs \;
 
 echo "Creating temporary folder for Database & etcd dump."
 TMP_DIR=$(mktemp -d)
