@@ -4,7 +4,7 @@
 : ${DATABASE_PORT:?"Need to set DATABASE_PORT"}
 : ${DATABASE_USERNAME:?"Need to set DATABASE_USERNAME"}
 : ${DATABASE_PASSWORD:?"Need to set DATABASE_PASSWORD"}
-: ${DATA_FOLDER:?"Need to set DATA_FOLDER"}
+: ${LOGS_FOLDER:?"Need to set LOGS_FOLDER"}
 : ${BACKUP_FOLDER:?"Need to set BACKUP_FOLDER"}
 
 BACKUP_RETENTION=${BACKUP_RETENTION:=7}
@@ -16,8 +16,8 @@ mkdir -p $BACKUP_FOLDER/backups
 TODAY=$(date +"%Y-%m-%d")
 echo "Running Backup for $TODAY"
 
-echo "Copying data older than a day to backup (Skipping Existing files)"
-find $DATA_FOLDER -mtime +1 -exec cp --parents -rn '{}' $BACKUP_FOLDER/data \;
+echo "Copying logs older than a day to backup (Skipping Existing files)"
+find $LOGS_FOLDER -mtime +1 -exec cp --parents -rn '{}' $BACKUP_FOLDER/data \;
 
 echo "Creating temporary folder for Database & etcd dump."
 TMP_DIR=$(mktemp -d)
@@ -38,4 +38,4 @@ echo "Delete backups older than $BACKUP_RETENTION days."
 find $BACKUP_FOLDER/backups -type f -mtime +$BACKUP_RETENTION -name '*.zip' -execdir rm -- '{}' \;
 
 # echo "Delete demos older than $DEMO_RETENTION days."
-# find $DATA_FOLDER -mtime +180 -name demo.txt.gz 
+# find $LOGS_FOLDER -mtime +180 -name demo.txt.gz 
