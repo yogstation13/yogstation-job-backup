@@ -38,5 +38,5 @@ rm -r $TMP_DIR
 echo "Delete backups older than $BACKUP_RETENTION days."
 find $BACKUP_FOLDER/backups -type f -mtime +$BACKUP_RETENTION -name '*.zip' -exec rm -- '{}' \;
 
-# echo "Delete demos older than $DEMO_RETENTION days."
-# find $LOGS_FOLDER -mtime +180 -name demo.txt.gz 
+echo "Delete demos older than $DEMO_RETENTION days."
+find $LOGS_FOLDER -mtime +$DEMO_RETENTION} -name demo.txt.gz -exec rm {} \;
