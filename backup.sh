@@ -25,13 +25,13 @@ TMP_DIR=$(mktemp -d)
 echo "Temp dir created: $TMP_DIR"
 
 echo "Dumping Forums DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_forums > $TMP_DIR/forums.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_forums > $TMP_DIR/forums.sql
 
 echo "Dumping Game DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_game > $TMP_DIR/game.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_game > $TMP_DIR/game.sql
 
 echo "Dumping Wiki DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_wiki > $TMP_DIR/wiki.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_wiki > $TMP_DIR/wiki.sql
 
 # TODO: etcd dump
 
