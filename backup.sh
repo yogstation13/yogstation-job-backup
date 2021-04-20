@@ -28,7 +28,7 @@ echo "Dumping Forums DB to data.sql file."
 mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_forums > $TMP_DIR/forums.sql
 
 echo "Dumping Game DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_game > $TMP_DIR/game.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_copy > $TMP_DIR/game.sql
 
 echo "Dumping Wiki DB to data.sql file."
 mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_wiki > $TMP_DIR/wiki.sql
