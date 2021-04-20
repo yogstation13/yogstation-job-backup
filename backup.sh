@@ -24,8 +24,14 @@ echo "Creating temporary folder for Database & etcd dump."
 TMP_DIR=$(mktemp -d)
 echo "Temp dir created: $TMP_DIR"
 
-echo "Dump MariaDB databases to data.sql file."
-mariadb-dump --all-databases -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD > $TMP_DIR/data.sql
+echo "Dumping Forums DB to data.sql file."
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_forums > $TMP_DIR/forums.sql
+
+echo "Dumping Game DB to data.sql file."
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_game > $TMP_DIR/game.sql
+
+echo "Dumping Wiki DB to data.sql file."
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD erro_wiki > $TMP_DIR/wiki.sql
 
 # TODO: etcd dump
 
