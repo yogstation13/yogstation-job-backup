@@ -25,7 +25,7 @@ TMP_DIR=$(mktemp -d)
 echo "Temp dir created: $TMP_DIR"
 
 echo "Dump MariaDB databases to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD --all-databases > $TMP_DIR/data.sql
+mariadb-dump --all-databases -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p $DATABASE_PASSWORD > $TMP_DIR/data.sql
 
 # TODO: etcd dump
 
@@ -39,4 +39,4 @@ echo "Delete backups older than $BACKUP_RETENTION days."
 find $BACKUP_FOLDER/backups -type f -mtime +$BACKUP_RETENTION -name '*.zip' -exec rm -- '{}' \;
 
 echo "Delete demos older than $DEMO_RETENTION days."
-find . -mtime +$DEMO_RETENTION -name demo.txt.gz -exec rm {} \;
+#find . -mtime +$DEMO_RETENTION -name demo.txt.gz -exec rm {} \;
