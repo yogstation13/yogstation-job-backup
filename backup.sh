@@ -21,25 +21,25 @@ cd $LOGS_FOLDER
 find . -mtime +1 -exec rsync --ignore-existing -Rq '{}' $BACKUP_FOLDER/logs \;
 
 echo "Creating temporary folder for Database & etcd dump."
-TMP_DIR=$(mktemp -d)
+TMP_DIR=/tmp/backup
+mkdir $TMP_DIR
 echo "Temp dir created: $TMP_DIR"
 
+mkdir -p $TMP_DIR/db
+
 echo "Dumping Forums DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_forums > $TMP_DIR/forums.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_forums > $TMP_DIR/db/forums.sql
 
 echo "Dumping Game DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_copy > $TMP_DIR/game.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_copy > $TMP_DIR/db/game.sql
 
 echo "Dumping Wiki DB to data.sql file."
-mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_wiki > $TMP_DIR/wiki.sql
+mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABASE_PASSWORD yogstation_wiki > $TMP_DIR/db/wiki.sql
 
 # TODO: etcd dump
 
 echo "Compress dumped data into zip archive."
 zip -r $BACKUP_FOLDER/backups/backup-$TODAY.zip $TMP_DIR
-
-echo "Delete temp folder"
-rm -r $TMP_DIR
 
 echo "Delete backups older than $BACKUP_RETENTION days."
 find $BACKUP_FOLDER/backups -type f -mtime +$BACKUP_RETENTION -name '*.zip' -exec rm -- '{}' \;
