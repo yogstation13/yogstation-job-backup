@@ -39,7 +39,7 @@ mariadb-dump -h $DATABASE_HOST -P $DATABASE_PORT -u $DATABASE_USERNAME -p$DATABA
 # TODO: etcd dump
 
 echo "Compress dumped data into zip archive."
-zip -r $BACKUP_FOLDER/backups/backup-$TODAY.zip $TMP_DIR
+zip -qr $BACKUP_FOLDER/backups/backup-$TODAY.zip $TMP_DIR
 
 echo "Delete backups older than $BACKUP_RETENTION days."
 find $BACKUP_FOLDER/backups -type f -mtime +$BACKUP_RETENTION -name '*.zip' -exec rm -- '{}' \;
